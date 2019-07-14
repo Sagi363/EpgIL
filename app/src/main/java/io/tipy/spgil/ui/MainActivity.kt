@@ -225,6 +225,7 @@ class MainActivity : Activity() {
         val programStartTime = program.startTime.hoursMinutesFormat()
         val programEndTime = program.endTime.hoursMinutesFormat()
         val imageUrl = fixKanImageUrl(program.image)
+        val liveImage = "https://raw.githubusercontent.com/Sagi363/EpgIL/master/app/src/main/res/drawable/live.png"
 
         val builder = PreviewProgram.Builder()
         builder.setChannelId(channelId)
@@ -233,7 +234,7 @@ class MainActivity : Activity() {
             .setDescription(program.description)
             .setPosterArtUri(Uri.parse(imageUrl))
             .setLive(program.live)
-            .setLogoUri(Uri.parse("https://rushcreekbc.org/wp-content/uploads/2018/11/youtube-690x302.png"))
+            .setLogoUri(if (program.live) Uri.parse(liveImage) else null)
             .setIntentUri(Uri.parse(""))
             .setInternalProviderId("")
 
